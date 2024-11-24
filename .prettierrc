@@ -1,0 +1,21 @@
+{
+    "arrowParens": "avoid",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "jsxSingleQuote": true,
+    "overrides": [
+        {
+            "files": "*.ts",
+            "options": {
+                "printWidth": 150
+            }
+        }
+    ],
+    "plugins": ["prettier-plugin-organize-imports", "prettier-plugin-sort-json"],
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 4,
+    "trailingComma": "es5",
+    "useTabs": false
+}

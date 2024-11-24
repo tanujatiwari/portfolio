@@ -1,0 +1,42 @@
+export const projects = [
+    {
+        tags: ['Next.js', 'React', 'Tailwind'],
+        year: 2024,
+        title: 'New Beauty',
+        subtitle: "Revolutionizing Luxe Beauty's online presence with cutting-edge web design and robust web development.",
+        img: '/temp/proj1.jpg',
+        link: '#',
+    },
+    {
+        tags: ['Web Development'],
+        year: 2023,
+        title: 'Electro Hub',
+        subtitle: "Revolutionizing Luxe Beauty's online presence with cutting-edge web design and robust web development.",
+        img: '/temp/proj2.jpg',
+        link: '#',
+    },
+    {
+        tags: ['Next.js'],
+        year: 2024,
+        title: 'Hydra Lips',
+        subtitle: "Revolutionizing Luxe Beauty's online presence with cutting-edge web design and robust web development.",
+        img: '/temp/proj3.jpg',
+        link: '#',
+    },
+    {
+        tags: ['Next.js'],
+        year: 2024,
+        title: 'Sonic Pulse',
+        subtitle: "Revolutionizing Luxe Beauty's online presence with cutting-edge web design and robust web development.",
+        img: '/temp/proj4.jpg',
+        link: '#',
+    },
+    {
+        tags: ['Web Dev'],
+        year: 2024,
+        title: 'Pure Radiance',
+        subtitle: "Revolutionizing Luxe Beauty's online presence with cutting-edge web design and robust web development.",
+        img: '/temp/proj5.jpg',
+        link: '#',
+    },
+]

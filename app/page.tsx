@@ -1,113 +1,152 @@
-import Image from "next/image";
+'use client'
+import Button from '@/sdk/components/button'
+import Heading from '@/sdk/components/heading'
+import { projects } from '@/sdk/constants'
+import clsx from 'clsx'
+import { ElementType, ReactNode, useState } from 'react'
+import { FaArrowDown } from 'react-icons/fa'
+import { Footer, Menu, ProjectContainer, ScrollContent } from './components'
+
+const DoubleComponent = ({
+    as: Component,
+    className,
+    children,
+    firstComponentClassName,
+    secondComponentClassName,
+    ...rest
+}: {
+    as: ElementType
+    className?: string
+    children?: ReactNode
+    firstComponentClassName?: string
+    secondComponentClassName?: string
+    [key: string]: any
+}) => {
+    return (
+        <>
+            <Component
+                className={clsx(
+                    'group-hover:top-1 duration-300 top-[-100px]',
+                    className,
+                    firstComponentClassName
+                )}
+                {...rest}
+            >
+                {children}
+            </Component>
+            <Component
+                className={clsx(
+                    'group-hover:-bottom-5 duration-300 bottom-[6px]',
+                    className,
+                    secondComponentClassName
+                )}
+                {...rest}
+            >
+                {children}
+            </Component>
+        </>
+    )
+}
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    const [showMenu, setShowMenu] = useState(false)
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+    return (
+        <main
+            className={clsx('bg-primary-dark-150 ', {
+                '!overflow-hidden !h-screen': showMenu,
+            })}
         >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+            {/* <Cursor /> */}
+            <section className='h-screen w-screen bg-[url("/images/header.jpg")] bg-cover bg-no-repeat flex items-end justify-center relative mb-[90px] scale-down'>
+                <Menu setShowMenu={setShowMenu} showMenu={showMenu} />
+                <div
+                    className='absolute bg-primary-light w-[60px] h-[60px] z-10 top-10 right-10 rounded-full p-[15px] flex flex-col justify-center items-center gap-2.5 group animation-menu opacity-0'
+                    role='button'
+                    onClick={() => setShowMenu(p => !p)}
+                >
+                    <hr className='border-black border-[1.1px] top-6 group-hover:top-9 duration-500 absolute w-[28px]' />
+                    <hr className='border-black border-[1.1px] top-9 group-hover:top-6 duration-500 absolute w-[28px]' />
+                </div>
+                <div
+                    className={clsx('bg-headerBg h-screen w-screen absolute p-10', {
+                        'fade-bg bg-black': showMenu,
+                    })}
+                />
+                <div className={clsx('relative z-10 flex flex-col items-center gap-4 p-10 ')}>
+                    <div>
+                        <div className='overflow-hidden'>
+                            <Heading
+                                text='Creative Design Agency'
+                                className='text-center relative animation-heading-1 opacity-0'
+                            />
+                        </div>
+                        <div className='overflow-hidden'>
+                            <Heading
+                                text='Based In London'
+                                className='text-center relative animation-heading-2 opacity-0'
+                            />
+                        </div>
+                    </div>
+                    <div className='overflow-hidden'>
+                        <Heading
+                            text='Our Design Agency Specializes In Creating Innovative And Impactful Solutions
+                        That Elevate Your Brand And Engage Your Audience.'
+                            className='text-center !text-2xl max-w-[800px] !font-normal !font-inter !capitalize animation-heading-3 relative opacity-0'
+                        />
+                    </div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+                    <div className='overflow-hidden'>
+                        <Button
+                            variant='link'
+                            href='#about'
+                            onClick={() => window.scrollTo({ behavior: 'smooth' })}
+                            prefix={
+                                <DoubleComponent as={FaArrowDown} className='absolute left-0' />
+                            }
+                            suffix={
+                                <DoubleComponent as={FaArrowDown} className='absolute right-0' />
+                            }
+                            className='text-lg gap-x-2 mt-4 font-semibold group relative !px-7 overflow-hidden animation-button opacity-0'
+                        >
+                            Scroll To Explore
+                        </Button>
+                    </div>
+                </div>
+            </section>
+            <section className='space-y-[140px] py-[60px]' id='about'>
+                <div className=''>
+                    <ScrollContent text='Your partner for' baseVelocity={-3} />
+                    <ScrollContent text='digital experience' baseVelocity={3} />
+                </div>
+                <div className='h-[60vh]'>
+                    <div className='max-w-[960px] text-center flex items-center justify-center flex-col gap-y-[60px] mx-auto'>
+                        <Heading text='About Us' className='!text-4xl' />
+                        <Heading
+                            text=' We are a passionate team of designers, developers, and strategists dedicated
+                        to transforming your ideas into visually stunning and effective designs'
+                            className='!text-[56px] !leading-[61px]'
+                        />
+                        <div className='overflow-hidden relative group'>
+                            <button className='mx-auto bold-heading !text-[22px] !leading-normal !text-secondary-green-light bottom-[-30px] group-hover:bottom-0 group-hover:!text-white duration-300 absolute'>
+                                More About Us
+                            </button>
+                            <button className='mx-auto bold-heading !text-[22px] !leading-normal !text-secondary-green-light bottom-0 relative group-hover:bottom-[30px] duration-300'>
+                                More About Us
+                            </button>
+                            <hr className='w-0 group-hover:w-full duration-500' />
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section className='p-[30px] space-y-10 '>
+                {projects.map((project, index) => (
+                    <ProjectContainer key={project.title} index={index} {...project} />
+                ))}
+            </section>
+            <section className='p-[30px]'>
+                <Footer />
+            </section>
+        </main>
+    )
 }

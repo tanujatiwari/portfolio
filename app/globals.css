@@ -3,31 +3,117 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    --scaleDownVariable: 1500ms;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .bold-heading {
+        @apply text-[120px] uppercase font-anton text-primary-light leading-[120px];
+    }
+}
+
+.animate-up {
+    transition: top 0.4s ease-out;
+}
+
+.animate-up-slow {
+    transition: bottom 0.5s ease-out;
+}
+
+.fade-bg {
+    transition: background-color 0.3s ease;
+}
+
+@keyframes animationFromTop {
+    0% {
+        top: 200px;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes animationFromBottom {
+    0% {
+        top: -250px;
+        opacity: 1;
+    }
+    100% {
+        top: 40px;
+        opacity: 1;
+    }
+}
+
+@keyframes scaleDown {
+    0% {
+        scale: 1.3;
+    }
+    100% {
+        scale: 1;
+    }
+}
+
+.animation-heading-1 {
+    animation: animationFromTop 0.7s ease-out forwards;
+    animation-delay: calc(var(--scaleDownVariable));
+}
+
+.project-container-heading-1 {
+    animation: animationFromTop 0.7s ease-out forwards;
+}
+
+.project-container-heading-2 {
+    animation: animationFromTop 0.7s ease-out forwards;
+    animation-delay: 100ms;
+}
+
+.project-container-heading-3 {
+    animation: animationFromTop 0.7s ease-out forwards;
+    animation-delay: 200ms;
+}
+
+.footer-container-heading-1 {
+    animation: animationFromTop 0.3s ease-out forwards;
+}
+
+.footer-container-heading-2 {
+    animation: animationFromTop 0.3s ease-out forwards;
+    animation-delay: 200ms;
+}
+
+.footer-container-heading-3 {
+    animation: animationFromTop 0.3s ease-out forwards;
+    animation-delay: 400ms;
+}
+
+.animation-heading-2 {
+    animation: animationFromTop 0.7s ease-out forwards;
+    animation-delay: calc(var(--scaleDownVariable) + 400ms - 300ms);
+}
+
+.animation-heading-3 {
+    animation: animationFromTop 0.7s ease-out forwards;
+    animation-delay: calc(var(--scaleDownVariable) + 500ms - 300ms);
+}
+
+.animation-button {
+    animation: animationFromTop 0.7s ease-out forwards;
+    animation-delay: calc(var(--scaleDownVariable) + 600ms - 300ms);
+}
+
+.animation-menu {
+    animation: animationFromBottom 0.7s ease-out forwards;
+    animation-delay: calc(var(--scaleDownVariable) + 400ms - 300ms);
+}
+
+.scale-down {
+    animation: scaleDown var(--scaleDownVariable) ease-out;
+}
+
+.filled-animation-button {
+    transition:
+        width 0.4s ease-in-out,
+        height 0.4s ease-in-out;
 }
